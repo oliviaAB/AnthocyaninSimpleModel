@@ -54,8 +54,8 @@ colsystem <- createInSilicoSystem(empty = T,
                                   ploidy = 1)
 
 ## Changing the kinetic parameters of the genes
-colsystem$genes$TCrate <- c(5, 0.1, 0.5, 0.01, 0.01, 0.01, 0.01, 0.1, 0.5)
-colsystem$genes$TLrate <- c(0.1, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.001)
+colsystem$genes$TCrate <- c(5, 0.5, 0.5, 0.01, 0.1, 0.01, 0.01, 0.1, 0.5)
+colsystem$genes$TLrate <- c(0.1, 0.002, 0.01, 0.01, 0.001, 0.01, 0.01, 0.01, 0.001)
 colsystem$genes$RDrate <- c(0.1, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01)
 colsystem$genes$PDrate <- c(0.01, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001)
 
@@ -174,7 +174,7 @@ save(colsystem, colpop, id2names, colours, file = here("output/sismonr_anthocyan
 set.seed(123)
 sim <- simulateInSilicoSystem(colsystem,
                               colpop_1ind, 
-                              simtime = 100,
+                              simtime = 3000,
                               ntrials = 1)
 sim$runningtime / 60
 sum(sim$runningtime)
