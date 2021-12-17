@@ -112,15 +112,15 @@ interactions <- list(list("edge" = c(1, 4),
                                             "TCfoldchange" = 15)),
                      list("edge" = c(7, 5),
                           "regsign" = "-1",
-                          "kinetics" = list("TCbindingrate" = 0.1,
+                          "kinetics" = list("TCbindingrate" = 0.05,
                                             "TCunbindingrate" = 2)),
                      list("edge" = c(8, 6),
                           "regsign" = "-1",
-                          "kinetics" = list("TCbindingrate" = 0.1,
+                          "kinetics" = list("TCbindingrate" = 0.01,
                                             "TCunbindingrate" = 2)),
                      list("edge" = c(8, 4),
                           "regsign" = "-1",
-                          "kinetics" = list("TCbindingrate" = 0.1,
+                          "kinetics" = list("TCbindingrate" = 0.01,
                                             "TCunbindingrate" = 2)))
 
 for(inter in interactions){
@@ -174,7 +174,7 @@ save(colsystem, colpop, id2names, colours, file = here("output/sismonr_anthocyan
 set.seed(123)
 sim <- simulateInSilicoSystem(colsystem,
                               colpop_1ind, 
-                              simtime = 3000,
+                              simtime = 100,
                               ntrials = 1)
 sim$runningtime / 60
 sum(sim$runningtime)
