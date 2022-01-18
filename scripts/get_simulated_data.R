@@ -4,7 +4,8 @@ library(sismonr)
 library(tidyverse)
 library(here)
 
-load(here("output/simulations.RData"))
+#load(here("output/simulations.RData"))
+load(here("output/simulations_no_cycles.RData"))
 
 ## For the pcalg package, input data must be in the form: rows = observations, columns = variables
 
@@ -13,11 +14,12 @@ simulated_data <- as_tibble(sim$Simulation) %>%
   select(starts_with("R")) %>% ## select the RNA abundances only
   rename_with(function(x){paste0("G", str_extract(x, "(?<=R)\\d+"))}) ## rename columns as G[gene ID]
 
-write_csv(simulated_data, file = here("output/simulated_data.csv"))
-
+#write_csv(simulated_data, file = here("output/simulated_data.csv"))
+write_csv(simulated_data, file = here("output/simulated_data_no_cycles.csv"))
 
 ## Making a plot of the network
-load(here("output/sismonr_anthocyanin_model.RData"))
+#load(here("output/sismonr_anthocyanin_model.RData"))
+load(here("output/sismonr_anthocyanin_model_no_cycles.RData"))
 
 nodes_labels <- paste0("G", 1:ncol(simulated_data))
 names(nodes_labels) <- paste0(1:ncol(simulated_data))
@@ -38,7 +40,8 @@ edges_list <- getEdges(colsystem) %>%
 for(i in 1:nrow(edges_list)) true_adjacency_matrix[edges_list$from[i], edges_list$to[i]] <- 1
 
 write.csv(true_adjacency_matrix,
-          file = here("output/true_adjacency_matrix.csv"), 
+          #file = here("output/true_adjacency_matrix.csv"), 
+          file = here("output/true_adjacency_matrix_no_cycles.csv"), 
           row.names = TRUE)
 
 ## Read this adjacency matrix with:

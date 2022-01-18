@@ -109,19 +109,20 @@ interactions <- list(list("edge" = c(1, 4),
                           "regsign" = "1",
                           "kinetics" = list("TCbindingrate" = 0.1,
                                             "TCunbindingrate" = 2,
-                                            "TCfoldchange" = 15)),
-                     list("edge" = c(7, 5),
-                          "regsign" = "-1",
-                          "kinetics" = list("TCbindingrate" = 0.05,
-                                            "TCunbindingrate" = 2)),
-                     list("edge" = c(8, 6),
-                          "regsign" = "-1",
-                          "kinetics" = list("TCbindingrate" = 0.01,
-                                            "TCunbindingrate" = 2)),
-                     list("edge" = c(8, 4),
-                          "regsign" = "-1",
-                          "kinetics" = list("TCbindingrate" = 0.01,
-                                            "TCunbindingrate" = 2)))
+                                            "TCfoldchange" = 15))
+                     # list("edge" = c(7, 5),
+                     #      "regsign" = "-1",
+                     #      "kinetics" = list("TCbindingrate" = 0.05,
+                     #                        "TCunbindingrate" = 2)),
+                     # list("edge" = c(8, 6),
+                     #      "regsign" = "-1",
+                     #      "kinetics" = list("TCbindingrate" = 0.01,
+                     #                        "TCunbindingrate" = 2)),
+                     # list("edge" = c(8, 4),
+                     #      "regsign" = "-1",
+                     #      "kinetics" = list("TCbindingrate" = 0.01,
+                     #                        "TCunbindingrate" = 2))
+                     )
 
 for(inter in interactions){
   colsystem <- addEdge(colsystem,
@@ -165,7 +166,8 @@ colpop_1ind$individualsList <- colpop_1ind$individualsList[1]
 ## Saving the system and individuals ##
 ## --------------------------------- ##
 
-save(colsystem, colpop, id2names, colours, file = here("output/sismonr_anthocyanin_model.RData"))
+#save(colsystem, colpop, id2names, colours, file = here("output/sismonr_anthocyanin_model.RData"))
+save(colsystem, colpop, id2names, colours, file = here("output/sismonr_anthocyanin_model_no_cycles.RData"))
 
 ## ------------------------------------------------------------------ ##
 ## Simulating the expression profiles of the genes for one individual ##
@@ -174,7 +176,7 @@ save(colsystem, colpop, id2names, colours, file = here("output/sismonr_anthocyan
 set.seed(123)
 sim <- simulateInSilicoSystem(colsystem,
                               colpop_1ind, 
-                              simtime = 3000,
+                              simtime = 2000,
                               ntrials = 1)
 sim$runningtime / 60
 sum(sim$runningtime)
@@ -183,4 +185,5 @@ plotSimulation(sim$Simulation,
                labels = id2names,
                colours = colours)
 
-ggsave(here("output/plot_one_simulation.png"), width = 12, height = 8)
+#ggsave(here("output/plot_one_simulation.png"), width = 12, height = 8)
+ggsave(here("output/plot_one_simulation_no_cycles.png"), width = 12, height = 8)
